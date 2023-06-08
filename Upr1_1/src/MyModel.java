@@ -6,11 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 
 public class MyModel extends AbstractTableModel {
-	
-	 
-	 /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ResultSet result;	
 	private int rowCount;	

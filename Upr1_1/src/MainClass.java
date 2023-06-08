@@ -1,10 +1,15 @@
-
 public class MainClass {
-
-	public static void main(String[] args) {
-
-		//HomePanel homeP = new HomePanel();
-		Relation docsa = new Relation();
-	}
+    /**
+     * main class and psvm of the project
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        /**
+         * function that evokes a specific sub class
+         */
+        //HomePanel homeP = new HomePanel();
+        Relation docsa = new Relation();
+    }
 
 }
