@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +9,7 @@ import java.sql.SQLException;
 
 public class Search extends JFrame {
     /**
-     * class that satisfies last problem
+     * Class that satisfies last problem
      **/
 
     Connection conn = null;
@@ -40,7 +38,7 @@ public class Search extends JFrame {
         this.setSize(400, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(3, 1));
-        
+
         //NavigateToXFrame.addActionListener(new NavigateToXFrame());
 
 
@@ -52,20 +50,17 @@ public class Search extends JFrame {
         upPanel.add(courtNameTF);
 
         this.add(upPanel);
-        // END upPanel --------------------------------------
 
 
         // START midPanel---------------------------------------
         midPanel.add(searchBt);
         midPanel.add(NavigateToHomeBt);
         this.add(midPanel);
-        // END midPanel---------------------------------------
 
 
         // START ACTION LISTENERS
         NavigateToHomeBt.addActionListener(new NavigateToHome());
         searchBt.addActionListener(new SearchAction());
-        // END ACTION LISTENERS
 
 
         //downPanel -------------------------------------
@@ -77,9 +72,8 @@ public class Search extends JFrame {
         this.setVisible(true);
     }
 
-    // TODO update line 90 so the refresh will work / is it even needed?
     public void refreshTable() {
-        /** refresh table function **/
+        /** Refresh table function */
         conn = DBConnection.getConnection();
 
         try {
@@ -105,20 +99,22 @@ public class Search extends JFrame {
     }
 
     class SearchAction implements ActionListener {
-
+        /**
+         * Class that handles the search function
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             conn = DBConnection.getConnection();
 
             String sql = "SELECT P.FNAME, I.SUD\n" +
-                        "FROM ADDITIONALINFO R\n" +
-                        "JOIN PRISONER P ON R.IDPRISONER = P.ID\n"+
-                        "JOIN INFO I ON I.ID = R.IDINFO\n" +
-                        "WHERE P.FNAME = ? AND I.SUD = ?";
+                    "FROM ADDITIONALINFO R\n" +
+                    "JOIN PRISONER P ON R.IDPRISONER = P.ID\n" +
+                    "JOIN INFO I ON I.ID = R.IDINFO\n" +
+                    "WHERE P.FNAME = ? AND I.SUD = ?";
             try {
                 state = conn.prepareStatement(sql);
-                state.setString(1,prisonerNameTF.getText());
-                state.setString( 2 ,courtNameTF.getText());
+                state.setString(1, prisonerNameTF.getText());
+                state.setString(2, courtNameTF.getText());
                 result = state.executeQuery();
                 table.setModel(new MyModel(result));
             } catch (SQLException ex) {

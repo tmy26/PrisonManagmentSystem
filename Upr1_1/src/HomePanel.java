@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 public class HomePanel extends JFrame {
     /**
      * class that handles navigation through panels
-     * nothing important only nav
-     **/
+     */
 
 
     JPanel encapsulate = new JPanel();

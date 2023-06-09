@@ -19,6 +19,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class Prisoners extends JFrame {
+    /**
+     * class to create and handle the functionality for Prisoners panel
+     */
 
     Connection conn = null;
     PreparedStatement state = null;
@@ -85,6 +88,7 @@ public class Prisoners extends JFrame {
 
         this.add(midPanel);
 
+        // Action listeners
         addBt.addActionListener(new AddAction());
         deleteBt.addActionListener(new DeleteAction());
         searchBt.addActionListener(new SearchAction());
@@ -104,7 +108,7 @@ public class Prisoners extends JFrame {
     }
 
     public void refreshCombo() {
-        /** Method to refresh the table in real time **/
+        /** Method to refresh the table in real time */
         prisonerCombo.removeAllItems();
 
         String sql = "select id, fname, lname from PRISONER";
@@ -129,7 +133,7 @@ public class Prisoners extends JFrame {
     }
 
     public void refreshTable() {
-        /** refresh table function **/
+        /** refresh table function */
         conn = DBConnection.getConnection();
 
         try {
@@ -146,7 +150,7 @@ public class Prisoners extends JFrame {
     }
 
     public void clearForm() {
-        /** Method to clear the input fields **/
+        /** Method to clear the input fields */
         fnameTF.setText("");
         lnameTF.setText("");
         ageTF.setText("");
@@ -156,11 +160,11 @@ public class Prisoners extends JFrame {
     class AddAction implements ActionListener {
         /**
          * Class to handle btn click
-         **/
+         */
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            /** Method wich is binded with the btn to add new register to the database **/
+            /** Method wich is binded with the btn to add new register to the database */
 
             conn = DBConnection.getConnection();
             String sql = "insert into PRISONER(fname, lname, sex, age, reason ) values(?,?,?,?,?)";
@@ -180,7 +184,6 @@ public class Prisoners extends JFrame {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-
         }
     }
 
@@ -188,10 +191,11 @@ public class Prisoners extends JFrame {
     class EditActionPrisoner implements ActionListener {
         /**
          * Class to handle btn click
-         **/
+         */
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            /** Method to edit already existing register in the database **/
+            /** Method to edit already existing register in the database */
             conn = DBConnection.getConnection();
             if (id > 0) {
                 String sql = "update prisoner set fname=?, lname=?, sex=?, age=?, reason=? where id=? ";
@@ -219,10 +223,10 @@ public class Prisoners extends JFrame {
     class MouseAction implements MouseListener {
         /**
          * Class to handle mouse action
-         **/
+         */
         @Override
         public void mouseClicked(MouseEvent e) {
-            /** Method that gets values from the input fields**/
+            /** Method that gets values from the input fields */
 
             int row = table.getSelectedRow();
             id = Integer.parseInt(table.getValueAt(row, 0).toString());
@@ -235,8 +239,6 @@ public class Prisoners extends JFrame {
             } else {
                 sexCombo.setSelectedIndex(1);
             }
-
-
         }
 
         @Override
@@ -269,11 +271,11 @@ public class Prisoners extends JFrame {
     class DeleteAction implements ActionListener {
         /**
          * Class that handles delete btn functionality
-         **/
+         */
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            /** Method that deletes already existing register in the database **/
+            /** Method that deletes already existing register in the database */
 
             conn = DBConnection.getConnection();
             String sql = "delete from PRISONER where id=?";
@@ -299,10 +301,10 @@ public class Prisoners extends JFrame {
     class SearchAction implements ActionListener {
         /**
          * Class that handles search btn functionality
-         **/
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
-            /** Method that handles searching logic **/
+            /** Method that handles searching logic */
 
             conn = DBConnection.getConnection();
             String sql = "select * from PRISONER where age=?";
@@ -318,9 +320,7 @@ public class Prisoners extends JFrame {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-
         }
-
     }
 
 
@@ -328,18 +328,15 @@ public class Prisoners extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
             refreshTable();
-
         }
-
     }
 
 
     class returnBt implements ActionListener {
         /**
          * Class that handles return btn activity
-         **/
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             // Close the current tab and open the new one

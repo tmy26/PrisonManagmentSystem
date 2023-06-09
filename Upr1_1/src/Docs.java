@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 public class Docs extends JFrame {
     /**
      * class to create and handle the functionality for Docs panel
-     **/
+     */
 
     Connection conn = null;
     PreparedStatement state = null;
@@ -92,6 +92,7 @@ public class Docs extends JFrame {
 
         this.add(midPanel);
 
+        // Action listeners
         addBt.addActionListener(new AddAction());
         deleteBt.addActionListener(new DeleteAction());
         searchBt.addActionListener(new SearchAction());

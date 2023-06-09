@@ -9,6 +9,9 @@ import java.sql.*;
 import javax.swing.*;
 
 public class Relation extends JFrame {
+    /**
+     * class to create and handle the functionality for Relation panel
+     */
 
     Connection conn = null;
     PreparedStatement state = null;
@@ -72,6 +75,7 @@ public class Relation extends JFrame {
 
         this.add(midPanel);
 
+        // Action listeners
         addBt.addActionListener(new AddAction());
         deleteBt.addActionListener(new DeleteAction());
         refreshBt.addActionListener(new RefreshAction());
@@ -90,7 +94,7 @@ public class Relation extends JFrame {
     }
 
     public void refreshCombo() {
-        /** Method to refresh the table in real time **/
+        /** Method to refresh the table in real time */
 
         String sql = "select * from ADDITIONALINFO";
         conn = DBConnection.getConnection();
@@ -109,11 +113,10 @@ public class Relation extends JFrame {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
     public void refreshTable() {
-        /** refresh table function **/
+        /** Refresh table function */
         conn = DBConnection.getConnection();
 
         try {
@@ -130,14 +133,14 @@ public class Relation extends JFrame {
     }
 
     public void clearForm() {
-        /** Method to clear the input fields **/
+        /** Method to clear the input fields */
         dateInTF.setText("");
         dateOutTF.setText("");
     }
 
 
     public void refreshPrisonerCombo() {
-        /** Method that gets info from X table and displays it into comboBox **/
+        /** Method that gets info from X table and displays it into comboBox */
         prisonerCombo.removeAllItems();
         String sql = "select id, fname, lname from prisoner";
         conn = DBConnection.getConnection();
@@ -159,7 +162,7 @@ public class Relation extends JFrame {
 
 
     public void refreshDocsCombo() {
-        /** Method that gets info from X table and displays it into comboBox **/
+        /** Method that gets info from X table and displays it into comboBox */
         docsCombo.removeAllItems();
         String sql = "select id, sud, prokuror, advokat from info";
         conn = DBConnection.getConnection();
@@ -182,7 +185,9 @@ public class Relation extends JFrame {
 
 
     class AddAction implements ActionListener {
-        /** class that handles add info to the sqldb **/
+        /**
+         * Class that handles add info to the sqldb
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             String comboSTRPrisoner = prisonerCombo.getSelectedItem().toString();
@@ -214,8 +219,8 @@ public class Relation extends JFrame {
 
     class EditActionPrisoner implements ActionListener {
         /**
-         * function to edit record in db
-         **/
+         * Method to edit record in db
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             /** Method to edit already existing register in the database **/
@@ -242,10 +247,10 @@ public class Relation extends JFrame {
     class MouseAction implements MouseListener {
         /**
          * Class to handle mouse action
-         **/
+         */
         @Override
         public void mouseClicked(MouseEvent e) {
-            /** Method that gets values from the input fields**/
+            /** Method that gets values from the input fields */
 
             int row = table.getSelectedRow();
             id = Integer.parseInt(table.getValueAt(row, 0).toString());
@@ -283,11 +288,11 @@ public class Relation extends JFrame {
     class DeleteAction implements ActionListener {
         /**
          * Class that handles delete btn functionality
-         **/
+         */
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            /** Method that deletes already existing register in the database **/
+            /** Method that deletes already existing register in the database */
 
             conn = DBConnection.getConnection();
             String sql = "delete from ADDITIONALINFO where id=?";
@@ -309,7 +314,9 @@ public class Relation extends JFrame {
 
 
     class RefreshAction implements ActionListener {
-        /** refresh method **/
+        /**
+         * Refresh method
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             refreshTable();
@@ -320,7 +327,7 @@ public class Relation extends JFrame {
     class returnBt implements ActionListener {
         /**
          * Class that handles return btn activity
-         **/
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             // Close the current tab and open the new one
