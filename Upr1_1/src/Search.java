@@ -14,7 +14,6 @@ public class Search extends JFrame {
      * class that satisfies last problem
      **/
 
-
     Connection conn = null;
     PreparedStatement state = null;
     ResultSet result = null;
@@ -41,8 +40,7 @@ public class Search extends JFrame {
         this.setSize(400, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(3, 1));
-
-
+        
         //NavigateToXFrame.addActionListener(new NavigateToXFrame());
 
 
@@ -112,10 +110,10 @@ public class Search extends JFrame {
         public void actionPerformed(ActionEvent e) {
             conn = DBConnection.getConnection();
 
-            String sql = "SELECT FNAME, SUD\n" +
+            String sql = "SELECT P.FNAME, I.SUD\n" +
                         "FROM ADDITIONALINFO R\n" +
-                        "JOIN PRISONER P ON R.ID = P.ID\n"+
-                        "JOIN INFO I ON R.ID = I.ID\n" +
+                        "JOIN PRISONER P ON R.IDPRISONER = P.ID\n"+
+                        "JOIN INFO I ON I.ID = R.IDINFO\n" +
                         "WHERE P.FNAME = ? AND I.SUD = ?";
             try {
                 state = conn.prepareStatement(sql);

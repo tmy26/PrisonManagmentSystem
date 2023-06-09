@@ -181,9 +181,6 @@ public class Relation extends JFrame {
     }
 
 
-
-    /////
-
     class AddAction implements ActionListener {
         /** class that handles add info to the sqldb **/
         @Override
@@ -208,15 +205,11 @@ public class Relation extends JFrame {
                 clearForm();
                 refreshCombo();
 
-
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-
         }
     }
-
-    ////
 
 
     class EditActionPrisoner implements ActionListener {
@@ -256,8 +249,8 @@ public class Relation extends JFrame {
 
             int row = table.getSelectedRow();
             id = Integer.parseInt(table.getValueAt(row, 0).toString());
-            dateInTF.setText(table.getValueAt(row, 4).toString());
-            dateOutTF.setText(table.getValueAt(row, 5).toString());
+            dateInTF.setText(table.getValueAt(row, 3).toString());
+            dateOutTF.setText(table.getValueAt(row, 4).toString());
         }
 
         @Override
@@ -311,21 +304,16 @@ public class Relation extends JFrame {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-
         }
-
     }
 
 
     class RefreshAction implements ActionListener {
-
+        /** refresh method **/
         @Override
         public void actionPerformed(ActionEvent e) {
-
             refreshTable();
-
         }
-
     }
 
 
@@ -342,5 +330,3 @@ public class Relation extends JFrame {
     }
 
 }
-
-//TODO repair the get info fnc
