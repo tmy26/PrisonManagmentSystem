@@ -1,3 +1,3 @@
-# Java GUI project with h2 db
+# Java GUI project with H2 database
 
-Java project for UNI with OOP knowledge
+Project for OOP & DB for second year of University
